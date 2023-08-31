@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <script>
+        function mostrarDatos(){
+            vnombre = document.getElementById("nombre").value;
+            vapellido = document.getElementById("apellido").value;
+            vdni = document.getElementById("dni").value;
+            vfNac = document.getElementById("nac").value;
+            vlocalidad = document.getElementById("localidad").value;
+            vdomicilio = document.getElementById("domicilio").value;
+            vbox1 = document.getElementById("box1").value;
+			vbox2 = document.getElementById("box2").value;
+			vbox3 = document.getElementById("box3").value;
+			vbox4 = document.getElementById("box4").value;
+
+
+            document.write("Los datos ingresados fueron: <br>")
+            document.write("Apellido: "+vapellido+"<br>")
+            document.write("Nombre: "+vnombre+"<br>")
+            document.write("DNI: "+vdni+"<br>")
+            document.write("Fecha de Nacimiento: "+vfNac+"<br>")
+            document.write("Localidad: "+vlocalidad+"<br>")
+            document.write("Domicilio: "+vdomicilio+"<br>")
+            document.write("Español: "+vbox1+"<br>")
+            document.write("Inglés: "+vbox2+"<br>")
+            document.write("Freancés: "+vbox3+"<br>")
+            document.write("Chino: "+vbox4+"<br>")
+
+            
+        }
+
+        function imprimir(){
+            document.write("<h2>Mostramos los datos</h2>")
+        }
+    </script>
+</head>
+<body>
+    <form action="" method="post">
+        <label for="apellido">Apellido</label>
+        <input type="text" id="apellido">
+
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre">
+        <br><br><br>
+
+        <label for="dni">N° DNI</label>
+        <input type="number" name="" id="dni" required>
+
+        <label for="nac">Fecha Nacimiento</label>
+        <input type="datetime-local" name="" id="nac">
+        <br><br><br>
+        
+        <label for="domicilio">Domicilio</label>
+        <input type="text" name="" id="domicilio">
+
+        <label for="localidad">Localidad</label>
+        <input type="text" id="localidad">
+        <br><br><br>
+        <table>
+            <caption><b>Idiomas que conoce</b></caption>
+            <tr>
+                <td></td><td>Nivel de conocimiento</td>
+            </tr>
+            <tr>
+                <td><label for="lenguajes" for="box1">
+                    
+                    <input type="checkbox" name="lenguajes" id="box1" value="español">Español</td>
+                </label>
+
+                <td>0 -- -- -- 50 -- -- -- 100 <br><input type="range" min="0" max="10"></td>
+            </tr>
+            <tr>
+                <td><label for="lenguajes" for="box2">
+                    
+                    <input type="checkbox" name="lenguajes" id="box2" value="ingles">Inglés</td>
+                </label>
+
+                <td>0 -- -- -- 50 -- -- -- 100 <br><input type="range" min="0" max="10"></td>
+            </tr>
+            <tr>
+                <td><label for="lenguajes" for="box3">
+                    
+                    <input type="checkbox" name="lenguajes" id="box3" value="frances">Francés</td>
+                </label>
+
+                <td>0 -- -- -- 50 -- -- -- 100 <br><input type="range" min="0" max="10"></td>
+            </tr>
+            <tr>
+                <td><label for="lenguajes" for="box4">
+                    
+                    <input type="checkbox" name="lenguajes" id="box4" value="chino">Chino</td>
+                </label>
+
+                <td>0 -- -- -- 50 -- -- -- 100 <br><input type="range" min="0" max="10"></td>
+            </tr>
+        </table>
+        <button type="submit" onclick="mostrarDatos()">Enviar</button>
+        <button type="reset">Borrar/Reiniciar</button>
+
+</form>
+</body>
+</html>
