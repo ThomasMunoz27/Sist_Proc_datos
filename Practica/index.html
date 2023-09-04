@@ -6,18 +6,24 @@
     <title>Formulario</title>
     <script>
         function mostrarDatos(){
+        //function checkSeleccionado(){
+
+        //}
             vnombre = document.getElementById("nombre").value;
             vapellido = document.getElementById("apellido").value;
             vdni = document.getElementById("dni").value;
             vfNac = document.getElementById("nac").value;
             vlocalidad = document.getElementById("localidad").value;
             vdomicilio = document.getElementById("domicilio").value;
-            vbox1 = document.getElementById("box1").value;
-			vbox2 = document.getElementById("box2").value;
-			vbox3 = document.getElementById("box3").value;
-			vbox4 = document.getElementById("box4").value;
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                for (const checkbox of checkboxes) {
+                if(checkbox.checked) {
+                    const valor = checkbox.value
+                    console.log(valor)
+                    document.write("Checkboxs elejidas:  "+valor+"<br>")
 
-
+                }
+            }
             document.write("Los datos ingresados fueron: <br>")
             document.write("Apellido: "+vapellido+"<br>")
             document.write("Nombre: "+vnombre+"<br>")
@@ -25,17 +31,15 @@
             document.write("Fecha de Nacimiento: "+vfNac+"<br>")
             document.write("Localidad: "+vlocalidad+"<br>")
             document.write("Domicilio: "+vdomicilio+"<br>")
-            document.write("Español: "+vbox1+"<br>")
-            document.write("Inglés: "+vbox2+"<br>")
-            document.write("Freancés: "+vbox3+"<br>")
-            document.write("Chino: "+vbox4+"<br>")
-
             
+
+
+
         }
 
-        function imprimir(){
-            document.write("<h2>Mostramos los datos</h2>")
-        }
+        
+
+
     </script>
 </head>
 <body>
