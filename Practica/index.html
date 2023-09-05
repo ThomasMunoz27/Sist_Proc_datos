@@ -15,6 +15,11 @@
             vfNac = document.getElementById("nac").value;
             vlocalidad = document.getElementById("localidad").value;
             vdomicilio = document.getElementById("domicilio").value;
+            var variable_de_rango1 = document.getElementById("rango-idioma1").value;
+            var variable_de_rango2 = document.getElementById("rango-idioma2").value;
+            var variable_de_rango3 = document.getElementById("rango-idioma3").value;
+            var variable_de_rango4 = document.getElementById("rango-idioma4").value;
+
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
                 for (const checkbox of checkboxes) {
                 if(checkbox.checked) {
@@ -31,7 +36,11 @@
             document.write("Fecha de Nacimiento: "+vfNac+"<br>")
             document.write("Localidad: "+vlocalidad+"<br>")
             document.write("Domicilio: "+vdomicilio+"<br>")
-            
+            document.write("El valor indicado es: "+variable_de_rango1+"<br>")
+            document.write("El valor indicado es: "+variable_de_rango2+"<br>")
+            document.write("El valor indicado es: "+variable_de_rango3+"<br>")
+            document.write("El valor indicado es: "+variable_de_rango4+"<br>")
+
 
 
 
@@ -75,7 +84,7 @@
                     <input type="checkbox" name="lenguajes" id="box1" value="español">Español</td>
                 </label>
 
-                <td>0 -- -- -- 50 -- -- -- 100 <br><input type="range" min="0" max="10"></td>
+                <td>0 -- -- -- 50 -- -- -- 100 <br><input type="range" min="0" max="100" value="0" id="rango-idioma1"></td>
             </tr>
             <tr>
                 <td><label for="lenguajes" for="box2">
@@ -83,7 +92,7 @@
                     <input type="checkbox" name="lenguajes" id="box2" value="ingles">Inglés</td>
                 </label>
 
-                <td>0 -- -- -- 50 -- -- -- 100 <br><input type="range" min="0" max="10"></td>
+                <td>0 -- -- -- 50 -- -- -- 100 <br><input type="range" min="0" max="100" value="0" id="rango-idioma2"></td>
             </tr>
             <tr>
                 <td><label for="lenguajes" for="box3">
@@ -91,7 +100,7 @@
                     <input type="checkbox" name="lenguajes" id="box3" value="frances">Francés</td>
                 </label>
 
-                <td>0 -- -- -- 50 -- -- -- 100 <br><input type="range" min="0" max="10"></td>
+                <td>0 -- -- -- 50 -- -- -- 100 <br><input type="range" min="0" max="100" value="0" id="rango-idioma3"></td>
             </tr>
             <tr>
                 <td><label for="lenguajes" for="box4">
@@ -99,7 +108,7 @@
                     <input type="checkbox" name="lenguajes" id="box4" value="chino">Chino</td>
                 </label>
 
-                <td>0 -- -- -- 50 -- -- -- 100 <br><input type="range" min="0" max="10"></td>
+                <td>0 -- -- -- 50 -- -- -- 100 <br><input type="range" min="0" max="100" value="0" id="rango-idioma4"></td>
             </tr>
         </table>
         <button type="submit" onclick="mostrarDatos()">Enviar</button>
