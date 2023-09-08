@@ -1,0 +1,21 @@
+document.write("Apellido: "+vapellido+"<br>")
+document.write("Nombre: "+vnombre+"<br>")
+document.write("DNI: "+vdni+"<br>")
+document.write("Fecha de Nacimiento: "+vfNac+"<br>")
+document.write("Localidad: "+vlocalidad+"<br>")
+document.write("Domicilio: "+vdomicilio+"<br>")
+
+
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+for (const checkbox of checkboxes) {
+if(checkbox.checked) {
+    const valor = checkbox.value
+    console.log(valor)
+    document.write("Checkboxs elejidas:  "+valor+"<br>")
+    
+}
+
+
+
+
+}
