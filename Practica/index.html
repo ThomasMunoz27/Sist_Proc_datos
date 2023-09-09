@@ -25,7 +25,22 @@
             var variable_de_rango2 = document.getElementById("rango-idioma2").value;
             var variable_de_rango3 = document.getElementById("rango-idioma3").value;
             var variable_de_rango4 = document.getElementById("rango-idioma4").value;
-            document.write("<b>Los datos ingresados fueron:</b> <br> Apellido: "+vapellido+" <br> Nombre: "+vnombre+"<br> DNI: "+vdni+"<br> Fecha de Nacimiento: "+vfNac+"<br> Localidad: "+vlocalidad+"<br> Domicilio: "+vdomicilio+"<br> <b>Idiomas que conoce </b> <br> "+vespanol+ "<br> El valor indicado es: "+variable_de_rango1+"<br>"+vingles+" <br> El valor indicado es: "+variable_de_rango2+"<br>"+vfrances+" <br> El valor indicado es: "+variable_de_rango3+"<br> "+vchino+" <br> El valor indicado es: "+variable_de_rango4+"<br>  ")
+            document.write("<b>Los datos ingresados fueron:</b> <br> "+
+            "Apellido: "+vapellido+" <br>"+
+            "Nombre: "+vnombre+"<br>"+
+            "DNI: "+vdni+"<br>"+
+            "Fecha de Nacimiento: "+vfNac+"<br>"+
+            "Localidad: "+vlocalidad+"<br>"+
+            "Domicilio: "+vdomicilio+"<br>"+
+            "<b>Idiomas que conoce </b> <br>"+
+            "Español: "+(vespanol.checked ? "Si" : "No")+ "<br>"+
+            "El valor indicado es: "+variable_de_rango1+"<br>"+
+            "Inglés: "+(vingles.checked ? "Si" : "No")+" <br>"+
+            "El valor indicado es: "+variable_de_rango2+"<br>"+
+            "Frances: "+(vfrances.checked ? "Si" : "No")+" <br>"+
+            "El valor indicado es: "+variable_de_rango3+"<br>"+
+            "Chino: "+(vchino.checked ? "Si" : "No")+" <br>"+
+            "El valor indicado es: "+variable_de_rango4+"<br>  ")
 
 
             
