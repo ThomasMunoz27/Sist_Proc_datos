@@ -1,0 +1,15 @@
+SELECT f.nrofact, fecha, f.nrocli, apellido, DF.art, A.detalle, A.puv, DF.cantidad, sum(A.puv*cantidad) AS "Total"
+FROM factura f, clientes c, detallefactura DF, articulos A
+WHERE f.nrocli = c.nrocli
+AND f.nrofact = DF.nrofact
+AND DF.art = A.art
+
+GROUP BY f.nrofact;
+
+
+
+
+SELECT legajo,
+CASE
+    WHEN legajo = 200 THEN "coordinador"
+    WHEN legajo in 
