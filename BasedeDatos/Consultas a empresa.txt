@@ -1,0 +1,49 @@
+1
+SELECT SUM(salario) FROM empleados;
+
+2
+SELECT COUNT(*) FROM empleados;
+
+3
+SELECT sum(estadocivil="C") FROM `empleados` WHERE 1;
+
+4
+SELECT COUNT(*) FROM empleados WHERE estadocivil = "C" AND seccion = 2;
+
+5
+SELECT cp, COUNT(*) FROM empleados GROUP BY cp;
+
+6
+SELECT estadocivil, COUNT(*) FROM empleados GROUP BY estadocivil;
+
+7
+SELECT apellido, nombre FROM empleados WHERE legajo BETWEEN 200 AND 501;
+
+8
+SELECT MAX(salario) FROM empleados;
+
+9
+SELECT seccion, MIN(salario) FROM empleados GROUP BY seccion;
+
+10
+SELECT cp, salario, legajo, apellido, nombre FROM empleados
+WHERE cp = 5515 or cp = 5500 or cp = 5517
+ORDER By cp;
+
+11
+SELECT salario, legajo, apellido FROM empleados WHERE seccion IS NULL;
+
+12
+SELECT cp, salario, legajo, apellido FROM empleados
+WHERE cp IN (5515, 5500, 5517)
+AND seccion = 3 
+AND salario >= 100000;
+
+13
+SELECT seccion, SUM(salario), AVG(salario) FROM empleados GROUP BY seccion HAVING AVG(salario) >= 110000;
+
+14
+SELECT seccion, SUM(salario), AVG(salario) FROM empleados WHERE seccion IS NOT NULL GROUP BY seccion HAVING SUM(salario) < 400000;
+
+15
+SELECT * FROM empleados WHERE domicilio LIKE '%Sarmiento%';
