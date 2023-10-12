@@ -1,0 +1,118 @@
+1
+SELECT COUNT(*) FROM `factura`;
+
+
+2.
+SELECT COUNT(*) FROM `factura_cuerpo`;
+
+
+3.
+SELECT COUNT(*) 
+FROM `factura_cuerpo`
+WHERE codart = 400;
+
+
+4.
+SELECT COUNT(*) 
+FROM `factura`
+WHERE codcliente = 101;
+
+
+5.
+SELECT COUNT(*) 
+FROM `articulos`
+WHERE stock is NULL;
+
+
+6.
+SELECT COUNT(apellido) 
+FROM `clientes`;
+
+
+7.
+SELECT COUNT(apellido) 
+FROM `clientes`
+WHERE apellido = "Baez";
+
+
+8.
+SELECT COUNT(apellido) 
+FROM `clientes`
+WHERE apellido LIKE "B%";
+
+
+9.
+SELECT nrofact, SUM(cantidad) 
+FROM `factura_cuerpo`
+WHERE nrofact = 1005
+GROUP BY nrofact;
+
+
+10.
+SELECT nrofact, SUM(cantidad) 
+FROM `factura_cuerpo`
+GROUP BY nrofact;
+
+
+11.
+SELECT nrofact, TRUNCATE((puv * iva) * cantidad,2)
+FROM factura_cuerpo fc, articulos a
+GROUP BY nrofact;
+
+
+12.
+SELECT codcliente, COUNT(DISTINCT(codart)) 
+FROM factura f, factura_cuerpo fc
+where f.nrofact = fc.nrofact
+AND f.codcliente = 102
+GROUP BY codcliente;
+
+
+13.
+SELECT codcliente, COUNT(DISTINCT(codart)) 
+FROM factura f, factura_cuerpo fc
+where f.nrofact = fc.nrofact
+GROUP BY codcliente;
+
+
+14.
+SELECT codcliente
+FROM factura f, factura_cuerpo fc
+where f.nrofact = fc.nrofact
+GROUP BY codcliente
+HAVING COUNT(DISTINCT(codart)) < 3;
+
+
+15.
+SELECT codcliente, SUM(fc.cantidad) 
+FROM factura_cuerpo fc, factura f
+WHERE fc.nrofact = f.nrofact
+AND codcliente = 102
+GROUP BY codcliente;
+
+
+16.
+SELECT fc.codart, detalle, cantidad
+FROM factura_cuerpo fc, factura f, articulos a
+WHERE fc.nrofact = f.nrofact
+AND fc.codart = a.codart
+AND f.codcliente = 101
+GROUP by detalle;
+
+
+17.
+SELECT a.detalle
+FROM articulos a, clientes c, factura f, factura_cuerpo fc
+WHERE c.codcliente = f.codcliente
+AND f.nrofact = fc.nrofact
+AND fc.codart = a.codart
+AND c.apellido = "Barroso"
+OR c.apellido = "Pérez";
+
+18.
+SELECT f.nrofact, date(f.fecha), f.codcliente, If(c.apellido is NULL, "Verificar cliente", c.apellido), a.detalle, fc.cantidad
+FROM factura_cuerpo fc, factura f, clientes c, articulos a
+WHERE f.nrofact = fc.nrofact
+AND f.codcliente = c.codcliente
+AND fc.codart = a.codart
+AND c.codcliente IN (104, 106, 107, 108);

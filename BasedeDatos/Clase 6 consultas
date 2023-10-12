@@ -1,0 +1,72 @@
+
+1
+INSERT INTO factura (nrofact, codcliente, fecha, hora, codven) 
+VALUES (1009, 104, "2023-09-30", "11:20:30", 5), (1012, 109, "2023-03-28", ": 09:10:00", 9)
+
+
+2
+INSERT into factura_cuerpo (nrofact, codart, cantidad)
+VALUES (1009, 605, 4), (1009, 606, 3), (1012, 500, 6)
+
+
+3
+INSERT INTO localidades (codpostal, localidad)
+VALUES (5521, "Guaymallén")
+
+INSERT INTO clientes (codcliente, apellido, nombre, codpostal)
+VALUES (109, "Quiroga", "Marcela", 5521), (111, "Ramírez", "Marcos", 5501)
+
+
+1.
+SELECT * 
+FROM `factura`
+WHERE nrofact > 1000 
+
+
+2.
+SELECT nrofact, fecha, hora 
+FROM `factura`
+WHERE codcliente < 102;
+
+
+3.
+SELECT nrofact
+FROM `factura`
+WHERE fecha > "2023-03-29";
+
+
+4.
+SELECT nrofact, hora
+FROM factura
+WHERE  nrofact = 1003;
+
+
+5.
+SELECT f.* , c.apellido, c.nombre
+FROM factura f, clientes c
+WHERE  f.codcliente = c.codcliente
+AND c.codcliente >= 103;
+
+
+6.
+SELECT f.nrofact , c.apellido
+FROM factura f, clientes c
+WHERE  f.codcliente = c.codcliente
+AND f.hora > "09:30:00" ;
+
+
+7.
+SELECT f.codcliente
+FROM factura f
+WHERE f.fecha < "2023-03-29"
+AND f.hora > "10:00:00";
+
+
+8.
+SELECT *
+FROM factura
+WHERE codcliente >= 102
+or nrofact != 1003
+
+
+9.
