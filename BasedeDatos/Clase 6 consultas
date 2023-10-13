@@ -70,3 +70,69 @@ or nrofact != 1003
 
 
 9.
+SELECT l.localidad, SUM(cantidad) as Compras
+FROM localidades l, factura_cuerpo fc, factura f, clientes c
+WHERE fc.nrofact = f.nrofact 
+AND f.codcliente = c.codcliente
+AND c.codpostal = l.codpostal
+GROUP BY f.codcliente
+ORDER by Compras DESC
+LIMIT 1;
+
+
+10.
+SELECT f.codcliente, DATEDIFF("2023-10-11", MAX(f.fecha)) as "Dias pasados"
+FROM factura f
+GROUP by codcliente;
+
+
+11.
+SELECT f.codcliente, DATE_ADD(f.fecha, INTERVAL 1 year) as "Fecha de compra futura"
+FROM factura f, factura_cuerpo fc
+WHERE f.codcliente = 108
+AND fc.nrofact = 1011
+AND fc.codart = 601
+GROUP by codcliente;
+
+
+12.
+SELECT (a.puv * fc.cantidad)*v.comision, v.legajo
+FROM vendedores v, articulos a, factura_cuerpo fc, factura f
+WHERE v.legajo = 4
+AND f.codven = v.legajo
+AND f.nrofact = fc.nrofact
+AND fc.codart = a.codart
+AND f.nrofact = 1008;
+
+
+13.
+SELECT v.apellido, v.nombre, f.nrofact, SUM((a.puv * fc.cantidad)*v.comision) AS "Comisiones Totales" 
+FROM vendedores v, articulos a, factura_cuerpo fc, factura f
+WHERE f.codven = v.legajo
+AND f.nrofact = fc.nrofact
+AND fc.codart = a.codart
+GROUP BY f.nrofact;
+
+
+14.
+SELECT v.apellido, v.nombre, f.nrofact, SUM((a.puv * fc.cantidad)*v.comision) AS "Comisiones Totales",
+CASE 
+	WHEN SUM((a.puv * fc.cantidad)*v.comision) > 1200 THEN "Incrementar comision"
+    ELSE CAST(((a.puv * fc.cantidad)*v.comision) AS CHAR)
+END AS "Comision"
+FROM vendedores v, articulos a, factura_cuerpo fc, factura f
+WHERE f.codven = v.legajo
+AND f.nrofact = fc.nrofact
+AND fc.codart = a.codart
+GROUP BY f.nrofact;
+
+
+15.
+SELECT c.codcliente, CONCAT_WS(',', c.apellido, c.nombre)AS 'Nombre completo',
+CASE
+WHEN (c.codpostal = 1001) THEN 'Cargo por trasporte 30%'
+WHEN (c.codpostal = 1002) THEN 'Cargo por trasporte 40%'
+ELSE CAST('Transporte local' AS CHAR)
+END AS 'Transporte'
+FROM clientes c
+
