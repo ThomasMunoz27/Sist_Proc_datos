@@ -1,0 +1,60 @@
+1.
+SELECT l.legajo, l.apellido, l.nombre 
+FROM legajos l
+WHERE EXISTS(
+    SELECT 1
+    FROM adelantos a
+    WHERE a.legajo = l.legajo
+);
+
+
+2.
+SELECT l.legajo, l.apellido, l.nombre 
+FROM legajos l
+WHERE NOT EXISTS(
+    SELECT 1
+    FROM adelantos a
+    WHERE a.legajo = l.legajo
+    AND a.monto >= 7000
+);
+
+
+3.
+SELECT l.legajo, l.apellido, l.nombre
+FROM legajos l
+WHERE NOT EXISTS(
+    SELECT 1
+    FROM equipolegajo el
+    WHERE el.idlegajo = l.legajo
+);
+
+
+4.
+SELECT p.nroproyecto, p.nombrepoyecto, l.apellido, l.nombre
+FROM legajos l, proyectos p, proyectoequipo pe, equipolegajo el
+WHERE (
+    SELECT sum(peh.hstrabajadas)
+    FROM proy_equipo_hs peh
+    WHERE peh.idproyecto = p.nroproyecto
+    GROUP BY p.nroproyecto
+) >= 0.15 * p.duracion
+AND p.nroproyecto = pe.idproyecto
+AND l.legajo = el.idlegajo
+AND el.idequipo = pe.idequipo;
+
+no.. tenes que usar un sum y comparar ese resultado con los tiempos asignados a los proyectos
+
+
+
+5.
+SELECT p.nombrepoyecto, l.apellido, l.nombre
+FROM legajos l, proyectos p, proyectoequipo pe, equipolegajo el
+WHERE (
+    SELECT sum(peh.hstrabajadas)
+    FROM proy_equipo_hs peh
+    WHERE peh.idproyecto = p.nroproyecto
+) >= 0.15 * p.duracion
+AND p.nroproyecto = pe.idproyecto
+AND l.legajo = el.idlegajo
+AND el.idequipo = pe.idequipo
+AND p.nombrepoyecto = 'Facturacion';

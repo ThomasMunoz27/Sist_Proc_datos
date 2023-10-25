@@ -1,0 +1,71 @@
+1.
+CREATE TABLE deudores (
+    codcliente INT(4),
+    fecha_deuda DATE,
+    mensaje VARCHAR(120),
+    PRIMARY KEY (codcliente, fecha_deuda)
+);
+
+
+2.
+CREATE TABLE cuentacorriente (
+    codcliente INT(4),
+    fecha DATE,
+    haber decimal(10,2),
+    debe decimal(10,2),
+    PRIMARY KEY (codcliente, fecha)
+);
+
+
+3.
+INSERT INTO cuentacorriente (codcliente, fecha, haber, debe)
+VALUES (102, '2023-03-30', 200000.00, 125000.00), (102, '2023-10-17', 75000.00, 0.00), (103, '2023-04-01', 125000.00, 75500.00), (103, '2023-10-17', 49500.00, 30000.00), (104, '2023-03-30', 100000.00, 85000.00), (104, '2023-10-17', 15000.00, 0.00), (105, '2023-04-01', 60000.00, 58000.00), (106, '2023-10-18', 45000.00, 50000.00), (111, '2023-10-18', 30000.00, 45000.00);
+
+
+
+1.
+SELECT c.apellido, c.nombre, (cc.debe-cc.haber) AS 'saldo'
+FROM clientes c, cuentacorriente cc
+WHERE c.codcliente = cc.codcliente
+
+/*SELECT c.apellido, , c.nombre, (cc.haber-cc.debe) AS 'saldo'
+FROM clientes c, cuentacorriente cc
+WHERE c.codcliente = cc.codcliente;*/
+
+
+
+2.
+SELECT cc.codcliente , cc.fecha,
+CASE
+	WHEN(sum(cc.haber-cc.debe)) > 0 THEN concat('Cliente con saldo deudor ', cast(SUM(cc.haber-cc.debe) as char))
+    else cast(SUM(cc.haber-cc.debe) as char)
+    END as 'mensaje'
+FROM clientes c, cuentacorriente cc
+WHERE cc.codcliente = c.codcliente 
+GROUP BY cc.codcliente;
+
+
+3.
+INSERT into deudores 
+SELECT codcliente, fecha,
+IF (haber - debe < 0, concat_ws(',','Cliente con saldo deudor', haber-debe), haber-debe) AS 'saldo'
+FROM facturaciones.cuentacorriente
+WHERE haber-debe < 0;
+
+
+4.
+UPDATE cuentacorriente
+SET debe = debe + (debe * 0.25)
+WHERE debe IN (30000, 83500)
+AND fecha >= '2023-04-01'
+AND fecha <= '2023-10-16'
+
+
+5.
+CREATE TABLE backup_cuentacorriente AS
+SELECT * FROM cuentacorriente;
+
+
+6.
+DELETE FROM backup_cuentacorriente
+WHERE haber-debe = 0;
